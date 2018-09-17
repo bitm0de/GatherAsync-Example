@@ -32,6 +32,13 @@ CALLBACK GatherEventHandler RxGatherHandler(GatherEventArgs e)
     //
     // NOTES: calls the function that invoked this callback with the same parameters
     // (i.e. GatherAsync("\r", rx$, RxGatherHandler, 500))
+    // - If the function fails (i.e. exception thrown) or terminates/returns prematurely
+    //   before the call to ReArmGatherAsync is made, then the asynchronous loop will end.
+    //   If you want to continue the gather "loop" then make sure something like a try-catch
+    //   statement is surrounding all code before this call to ensure that ReArmGatherAsync
+    //   is still called afterwards... Be sure to handle the exception appropriately if it is
+    //   a fatal exception to the state of your code.
+    //
     // SIGNED_INTEGER RearmGatherAsync (BUFFER_INPUT Input);
     ReArmGatherAsync(e.Input);
 }

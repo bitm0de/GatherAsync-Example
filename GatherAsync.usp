@@ -26,7 +26,7 @@ CALLBACK GatherEventHandler RxGatherHandler(GatherEventArgs e)
     }
 
     // RETURNS - SIGNED_LONG_INTEGER
-    // 1 - failed (gather removed)
+    // -1 - failed (gather removed)
     // 0  - success
     //
     // NOTES: calls the function that invoked this callback with the same parameters

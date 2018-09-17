@@ -56,5 +56,6 @@ FUNCTION Main()
     // RETURNS - SIGNED_LONG_INTEGER:
     // -1 - failed to remove (already removed)
     // 0  - success
-    // NOTE: call RemoveGatherAsync(rx$) to terminate the asynchronous "loop"
+    // NOTE: call to terminate the asynchronous "loop"
+    // RemoveGatherAsync(rx$);
 }

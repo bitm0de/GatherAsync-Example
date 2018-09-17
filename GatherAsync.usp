@@ -1,0 +1,57 @@
+#SYMBOL_NAME "GatherAsyncTest"
+#CATEGORY "10" // Serial
+
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+
+BUFFER_INPUT rx$[4096];
+
+CALLBACK GatherEventHandler RxGatherHandler(GatherEventArgs e)
+{
+    // class GatherEventArgs
+    // {
+    //   SIGNED_INTEGER Results
+    //   STRING RxString
+    //   BUFFER_INPUT Input
+    // }
+    
+    if (e.Results = 0)
+    {
+        // Success
+    }
+    else if (e.Results = -1)
+    {
+        // Timeout
+    }
+
+    // RETURNS - SIGNED_LONG_INTEGER
+    // 1 - failed (gather removed)
+    // 0  - success
+    //
+    // NOTES: calls the function that invoked this callback with the same parameters
+    // (i.e. GatherAsync("\r", rx$, RxGatherHandler, 500))
+    // SIGNED_INTEGER RearmGatherAsync (BUFFER_INPUT Input);
+    ReArmGatherAsync(e.Input);
+}
+
+FUNCTION Main()
+{
+    WaitForInitializationComplete();
+    
+    // 3-series ONLY !!
+    
+    // RETURNS - SIGNED_LONG_INTEGER:
+    // -1 - over capacity
+    // 0  - success
+    // 1  - success (replaced previous gather criteria)
+    //
+    // NOTES: call without timeout or set timeout to -1 to disable
+    //  // SIGNED_INTEGER GatherASync (STRING Delimiter, BUFFER_INPUT Input, GatherEventHandler EventHandler, [INTEGER Timeout]);
+    if (GatherAsync("\r", rx$, RxGatherHandler, 500) = -1)
+    {
+        // over capacity - for future GatherAsync() by length instead of delimiter
+    }
+    
+    // NOTE: call RemoveGatherAsync(rx$) to terminate the asynchronous "loop"
+}

@@ -19,6 +19,7 @@ CALLBACK GatherEventHandler RxGatherHandler(GatherEventArgs e)
     if (e.Results = 0)
     {
         // Success
+        // - Use e.RxString here...
     }
     else if (e.Results = -1)
     {

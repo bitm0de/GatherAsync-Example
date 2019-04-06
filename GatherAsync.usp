@@ -58,8 +58,7 @@ FUNCTION Main()
     // SIGNED_INTEGER GatherASync (STRING Delimiter, BUFFER_INPUT Input, GatherEventHandler EventHandler, [INTEGER Timeout]);
     if (GatherAsync("\r", rx$, RxGatherHandler, 500) = -1)
     {
-        // over capacity - for future GatherAsync() by length instead of delimiter
-        // (note - this may be a different function all together if we get it; GatherByLengthAsync() perhaps.)
+        // Error: over capacity - specifically for GatherAsyncByLength().
     }
     
     // RETURNS - SIGNED_LONG_INTEGER:

@@ -55,10 +55,14 @@ FUNCTION Main()
     // 1  - success (replaced previous gather criteria)
     //
     // NOTES: call without timeout or set timeout to -1 to disable
-    // SIGNED_INTEGER GatherASync (STRING Delimiter, BUFFER_INPUT Input, GatherEventHandler EventHandler, [INTEGER Timeout]);
+    // SIGNED_INTEGER GatherAsync(STRING Delimiter, BUFFER_INPUT Input, GatherEventHandler EventHandler, [INTEGER Timeout]);
     if (GatherAsync("\r", rx$, RxGatherHandler, 500) = -1)
     {
         // Error: over capacity - specifically for GatherAsyncByLength().
+        //
+        // SIGNED_INTEGER GatherAsyncByLength(INTEGER Length, BUFFER_INPUT Input, GatherEventHandler EventHandler, [INTEGER Timeout]);
+        // (i.e. GatherAsyncByLength(MAX_BUFFER_SIZE, rx$, RxGatherHandler, -1))
+        // * This function also has an optional timeout parameter.
     }
     
     // RETURNS - SIGNED_LONG_INTEGER:

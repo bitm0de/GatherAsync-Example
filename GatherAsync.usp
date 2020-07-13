@@ -47,7 +47,7 @@ FUNCTION Main()
 {
     WaitForInitializationComplete();
     
-    // 3-series ONLY !!
+    // 3-series (or greater) ONLY !!
     
     // RETURNS - SIGNED_LONG_INTEGER:
     // -1 - over capacity

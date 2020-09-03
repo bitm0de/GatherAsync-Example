@@ -16,16 +16,22 @@ CALLBACK GatherEventHandler RxGatherHandler(GatherEventArgs e)
     //   BUFFER_INPUT Input
     // }
     
-    if (e.Results = 0)
+    try
     {
-        // Success
-        // - Use e.RxString here...
+        if (e.Results = 0)
+        {
+            // Success
+            // - Use e.RxString here...
+        }
+        else if (e.Results = -1)
+        {
+            // Timeout
+        }
     }
-    else if (e.Results = -1)
+    catch
     {
-        // Timeout
+        Trace("RxGatherHandler Exception: %s\n", GetExceptionMessage());
     }
-
     // RETURNS - SIGNED_LONG_INTEGER
     // -1 - failed (gather removed)
     // 0  - success
